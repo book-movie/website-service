@@ -12,7 +12,7 @@
 	
 	<form></form>
 	<jstl:forEach var="dateFromTheatre" items="${dates}">
-		<a href="/theatreShowingMovieByDate?dateAsString=${dateFromTheatre}">${dateFromTheatre}</a>
+		<a href="theatreShowingMovieByDate?dateAsString=${dateFromTheatre}">${dateFromTheatre}</a>
 	</jstl:forEach>
 	<%-- 	this is working ------>   <%=java.time.LocalDate.now().getDayOfMonth()   %>  --%>
 	<%--  	not working ----->   		${java.time.LocalDate.now()}  --%>
@@ -25,7 +25,12 @@
 			<tr>
 				<td><b>${theatre.theatreName}</b> (
 					${theatre.theatreAddress.city}, ${theatre.theatreAddress.area})</td>
-				<td><a href="/chooseSeats?screening=${theatre}">${theatre.startTime}</a></td>
+				<td><a href="chooseSeats?theatreName=${theatre.theatreName}&theatreState=${theatre.theatreAddress.state}
+				&theatreCity=${theatre.theatreAddress.city}&theatreArea=${theatre.theatreAddress.area}&date=${theatre.date}
+				&startTime=${theatre.startTime}">${theatre.startTime}</a></td>
+				<td><a href="chooseSeats?theatreName=${theatre.theatreName}&theatreState=${theatre.theatreAddress.state}
+				&theatreCity=${theatre.theatreAddress.city}&theatreArea=${theatre.theatreAddress.area}&date=${theatre.date}
+				&startTime=${theatre.startTime}"> hello</a></td>
 			</tr>
 
 		</jstl:forEach>

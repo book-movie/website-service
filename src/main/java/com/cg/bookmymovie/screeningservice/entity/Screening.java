@@ -5,10 +5,12 @@ import java.time.LocalTime;
 import java.util.Map;
 
 
-
 public class Screening {
 
 	private int id;
+
+//	private static int number=2;
+	
 	private String movieName;
 	private LocalTime movieDuration;
 	private String movieType;
@@ -17,22 +19,21 @@ public class Screening {
 	private String theatreName;
 	private Address theatreAddress;
 	private String auditoriumName;
-
 	private LocalTime startTime;
-	
 	private LocalDate date;
-	
-	private Map<String, Double> price;
 	private boolean showing;
+	private Map<Integer, Seat> seat;
+	
 	
 	public Screening() {
 		
 	}
 
-	public Screening(String movieName, LocalTime movieDuration, String movieType, String movieLanguage,
+	public Screening(int id, String movieName, LocalTime movieDuration, String movieType, String movieLanguage,
 			String moviePoster, String theatreName, Address theatreAddress, String auditoriumName, LocalTime startTime,
-			LocalDate date, Map<String, Double> price, boolean showing) {
+			LocalDate date, boolean showing, Map<Integer, com.cg.bookmymovie.screeningservice.entity.Seat> seat) {
 		super();
+		this.id = id;
 		this.movieName = movieName;
 		this.movieDuration = movieDuration;
 		this.movieType = movieType;
@@ -43,8 +44,8 @@ public class Screening {
 		this.auditoriumName = auditoriumName;
 		this.startTime = startTime;
 		this.date = date;
-		this.price = price;
 		this.showing = showing;
+		this.seat = seat;
 	}
 
 	public int getId() {
@@ -135,14 +136,6 @@ public class Screening {
 		this.date = date;
 	}
 
-	public Map<String, Double> getPrice() {
-		return price;
-	}
-
-	public void setPrice(Map<String, Double> price) {
-		this.price = price;
-	}
-
 	public boolean isShowing() {
 		return showing;
 	}
@@ -151,29 +144,12 @@ public class Screening {
 		this.showing = showing;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((movieName == null) ? 0 : movieName.hashCode());
-		return result;
+	public Map<Integer, Seat> getSeat() {
+		return seat;
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Screening other = (Screening) obj;
-		if (movieName == null) {
-			if (other.movieName != null)
-				return false;
-		} else if (!movieName.equals(other.movieName))
-			return false;
-		return true;
+	public void setSeat(Map<Integer, Seat> seat) {
+		this.seat = seat;
 	}
 
 	@Override
@@ -181,10 +157,10 @@ public class Screening {
 		return "Screening [id=" + id + ", movieName=" + movieName + ", movieDuration=" + movieDuration + ", movieType="
 				+ movieType + ", movieLanguage=" + movieLanguage + ", moviePoster=" + moviePoster + ", theatreName="
 				+ theatreName + ", theatreAddress=" + theatreAddress + ", auditoriumName=" + auditoriumName
-				+ ", startTime=" + startTime + ", date=" + date + ", price=" + price + ", showing=" + showing + "]";
+				+ ", startTime=" + startTime + ", date=" + date + ", showing=" + showing + ", seat=" + seat + "]";
 	}
 
-	
 
+	
 
 }
